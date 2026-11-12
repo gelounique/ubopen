@@ -8,7 +8,7 @@ $RUN "$E/ffmpeg/ffmpeg" -v error -y -f lavfi -i testsrc2=s=800x500 -frames:v 1 "
 printf '# Hallo vom Mac\n\nUBOpen **läuft**.\n' > "$S/text.md"
 (cd "$S" && $RUN "$E/7zip/7zz" a -tzip arc.zip text.md >/dev/null)
 { echo "ffmpeg: $($RUN "$E/ffmpeg/ffmpeg" -version | head -1)"; echo "pandoc: $($RUN "$E/pandoc/pandoc" --version | head -1)"; echo "7zz: $($RUN "$E/7zip/7zz" i | head -2 | tail -1)"; } > "$OUT/smoke-$ARCH-engines.txt" 2>&1
-export UB_AUTOTEST="$(cd "$(dirname "$0")" && pwd)/smoke.js" UB_SMOKE_DIR="$S" UB_SMOKE_OUT="$OUT" UB_SMOKE_ARCH="$ARCH" UB_FORCE_WASM=1
+export UB_AUTOTEST="$(cd "$(dirname "$0")" && pwd)/smoke.js" UB_SMOKE_DIR="$S" UB_SMOKE_OUT="$OUT" UB_SMOKE_ARCH="$ARCH" UB_FORCE_WASM=1 ELECTRON_ENABLE_LOGGING=1 ELECTRON_ENABLE_STACK_DUMPING=1
 $RUN "$APP/Contents/MacOS/UBOpen & Convert" > "$OUT/smoke-$ARCH-log.txt" 2>&1 &
 PID=$!; ( sleep 300; kill $PID 2>/dev/null ) & WD=$!
 wait $PID 2>/dev/null; kill $WD 2>/dev/null || true

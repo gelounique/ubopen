@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UBOpen &amp; Convert by gelounique – jede Datei öffnen, ansehen und konvertieren</title>
+<meta name="description" content="UBOpen &amp; Convert by gelounique: über 930 Dateiformate öffnen, ansehen, bearbeiten und konvertieren – Bilder, RAW, Video, Audio, PDF, Office, Archive, 3D, Schriften und mehr. Jetzt in der Beta, für kurze Zeit kostenlos für Windows &amp; Mac und direkt im Browser.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="UBOpen &amp; Convert – Jede Datei. Jedes Format.">
+<meta property="og:description" content="Über 930 Formate öffnen, ansehen und konvertieren. Windows &amp; Mac – in der Beta für kurze Zeit kostenlos.">
+<meta property="og:image" content="https://ubopen.uniquebaby.de/assets/og.jpg">
+<meta property="og:url" content="https://ubopen.uniquebaby.de/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/icon-64.png">
+<link rel="apple-touch-icon" href="assets/icon-192.png">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="landing.css">
+</head>
+<body>
+
+<div class="bgring" aria-hidden="true"><div class="br-float"><div class="br-glow"></div><div class="br-ring"></div><div class="br-head"></div></div></div>
+
+<div id="ld" aria-hidden="true"><div class="ld-ico"><i class="ld-ring"></i><img src="assets/un-white.png" alt=""></div><span class="ld-pc">0</span></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="UBOpen – nach oben"><img src="assets/ub-white.png" alt="UB"><b>UBOpen</b><span class="tag">BETA</span></a>
+  <nav class="links">
+    <a href="#formate">Formate</a><a href="#workflow">So geht’s</a><a href="#tools">Tools</a><a href="#download">Download</a><a href="#bug">Bug melden</a>
+  </nav>
+  <a class="btn pinkring sm" href="app/">Ausprobieren</a>
+</header>
+
+<main id="top">
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-txt">
+      <img class="hero-ico reveal" src="assets/icon-192.png" alt="UBOpen &amp; Convert" width="88" height="88">
+      <div class="eyebrow reveal">UBOPEN &amp; CONVERT BY GELOUNIQUE</div>
+      <h1 class="reveal">Jede Datei.<br><span class="sub">Jedes Format.</span></h1>
+      <p class="lead reveal">Öffnen, ansehen, bearbeiten und konvertieren – über <b>930 Formate</b> in einer App. Bilder, RAW, Video, Audio, PDF, Office, Archive, 3D und alles dazwischen.</p>
+      <div class="hero-cta reveal">
+        <a class="try" href="app/" id="tryBtn"><span class="try-ring" aria-hidden="true"></span><span class="try-in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>Ausprobieren</span></a>
+        <a class="btn ghost" href="#download">Download Windows &amp; Mac</a>
+      </div>
+      <div class="beta-note reveal"><i class="dot"></i><span><b>BETA</b> · für kurze Zeit kostenlos zum Download und Ausprobieren</span></div>
+    </div>
+    <figure class="hero-shot reveal"><img src="assets/shot-home.jpg" alt="UBOpen &amp; Convert: Startseite mit Drop-Zone und Werkzeugen" width="2000" height="1250"></figure>
+  </div>
+  <div class="ticker reveal" aria-hidden="true"><div class="tk-row" id="tk1"></div><div class="tk-row rev" id="tk2"></div></div>
+</section>
+
+<!-- BETA -->
+<section class="sec beta-sec" id="beta">
+  <div class="wrap">
+    <div class="panel glowbox beta reveal">
+      <div class="beta-l">
+        <div class="eyebrow">BETA 1.0</div>
+        <h2>Jetzt in der Beta.<br>Für kurze Zeit kostenlos.</h2>
+      </div>
+      <div class="beta-r">
+        <p>UBOpen ist der Datei-Öffner, den man eigentlich immer gebraucht hätte: <b>reinziehen, ansehen, umwandeln</b>. Solange die Beta läuft, kannst du alles kostenlos laden – für Windows, Mac (Apple Silicon &amp; Intel) und als Testversion direkt im Browser.</p>
+        <p class="fine">Ein Format zickt? <a class="tl" href="#bug">Bug melden</a> – jede Meldung macht UBOpen besser.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FORMATE -->
+<section class="sec" id="formate">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">FORMAT-CHECK</div>
+      <h2>Kann UBOpen das öffnen?</h2>
+      <p>Spoiler: sehr wahrscheinlich. Tipp eine Dateiendung ein – oder stöber durch die Kategorien.</p>
+    </div>
+    <div class="panel fcheck reveal">
+      <label class="fsearch"><span>.</span><input id="fq" placeholder="z. B. heic, mkv, psd, stl, docx" autocomplete="off" spellcheck="false" aria-label="Dateiendung suchen"></label>
+      <div class="fres" id="fres" role="status" aria-live="polite"></div>
+      <div class="fcats" id="fcats"></div>
+      <div class="flist" id="flist"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section class="sec" id="workflow">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">SO GEHT’S</div>
+      <h2>Reinziehen. Ansehen. Fertig.</h2>
+      <p>Kein Suchen nach dem passenden Programm, kein Online-Konverter, der deine Dateien hochlädt. UBOpen erkennt jede Datei am Inhalt – nicht nur an der Endung – und arbeitet komplett lokal.</p>
+    </div>
+    <div class="steps">
+      <div class="panel step reveal"><span class="n">01</span><h3>Datei rein</h3><p>Reinziehen, <b>Öffnen mit › UBOpen</b> oder Doppelklick. Auch ganze Ordner und hunderte Dateien auf einmal.</p></div>
+      <div class="panel step reveal"><span class="n">02</span><h3>Ansehen</h3><p>Der passende Viewer startet sofort: Bild, Video, PDF, Tabelle, 3D-Modell, Archiv, Schrift, Hex …</p></div>
+      <div class="panel step reveal"><span class="n">03</span><h3>Konvertieren</h3><p>Zielformat wählen, Qualität einstellen, los. Original bleibt unangetastet – du bekommst eine Kopie.</p></div>
+    </div>
+    <figure class="shot reveal"><img src="assets/shot-queue-done.jpg" alt="Konvertier-Warteschlange in UBOpen mit fertigen Dateien" loading="lazy" width="2000" height="1250"></figure>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="sec" id="tools">
+  <div class="wrap">
+    <div class="head reveal">
+      <div class="eyebrow">WAS DRIN IST</div>
+      <h2>Ein Programm statt zwanzig.</h2>
+    </div>
+    <div class="bento">
+      <div class="panel b-tools reveal">
+        <h3>26 Kategorien, ein Viewer</h3>
+        <p>Für jede Dateiart der passende Blick – mit Zoom, Infos, Metadaten und Bearbeitung, wo es Sinn ergibt.</p>
+        <div class="ticons" id="ticons"></div>
+      </div>
+      <div class="panel glowbox b-conv reveal"><h3>Batch-Konvertieren</h3><p>Ganze Ordner in einem Rutsch: Bilder zu WebP, Videos zu MP4, Audio zu MP3, Tabellen zu XLSX – mit Qualitäts-Stufen.</p></div>
+      <div class="panel glowbox b-copy reveal"><h3>Kopien statt Risiko</h3><p>Speichern unter, Duplikat, als ZIP packen, Prüfsummen – dein Original wird nie überschrieben.</p></div>
+      <div class="panel b-shot reveal"><img src="assets/shot-video.jpg" alt="Video-Viewer in UBOpen" loading="lazy"><div><h3>Bearbeiten, wo es passt</h3><p>Bilder drehen, zuschneiden, Größe ändern. Videos trimmen, Audio extrahieren, GIFs bauen. PDFs zu Bildern, Text zu PDF.</p></div></div>
+      <div class="panel b-local reveal"><h3>100 % lokal</h3><p>Keine Uploads, kein Konto. FFmpeg, ImageMagick, 7-Zip und Pandoc sind eingebaut.</p></div>
+      <div class="panel b-web reveal"><h3>Auch im Browser</h3><p>Die <a class="tl" href="app/">Testversion</a> läuft mit WebAssembly direkt im Tab – Dateien verlassen dein Gerät nicht.</p></div>
+    </div>
+    <div class="hosts reveal" aria-label="Plattformen">
+      <span>Windows 10/11</span><span>macOS Apple Silicon</span><span>macOS Intel</span><span>Browser</span>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD -->
+<section class="sec" id="download">
+  <div class="wrap">
+    <div class="panel glowbox dl reveal">
+      <div class="dl-head">
+        <img class="dl-ico" src="assets/icon-192.png" alt="" width="96" height="96">
+        <div>
+          <div class="eyebrow">UBOPEN &amp; CONVERT 1.0.0 · BETA</div>
+          <h2>Kostenlos laden.</h2>
+          <p>Solange die Beta läuft, für alle. Alle Engines sind schon drin – installieren, Datei reinziehen, fertig. Der Setup trägt UBOpen auf Wunsch bei „Öffnen mit“ ein, ein Uninstaller ist dabei.</p>
+        </div>
+      </div>
+      <div class="dl-btns">
+        <a class="dlbtn" id="dlWin" href="https://github.com/gelounique/ubopen-web/releases/download/v1.0.0/UBOpen-Setup-1.0.0.exe">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5.5 10.5 4.4v7H3zM11.6 4.3 21 3v8.4h-9.4zM3 12.6h7.5v7L3 18.5zm8.6 0H21V21l-9.4-1.3z" fill="currentColor"/></svg>
+          <span><b>Windows</b><small>Setup · Win 10/11 · 241 MB</small></span><i class="arr" aria-hidden="true">↓</i>
+        </a>
+        <a class="dlbtn" id="dlMacA" href="https://github.com/gelounique/ubopen-web/releases/download/v1.0.0/UBOpen-1.0.0-mac-arm64.dmg">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.9-.9-3.1-.8C6.8 7.3 5.3 8.2 4.5 9.6c-1.7 2.9-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-4zM14.1 5.5c.6-.8 1.1-1.9 1-3-1 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.3z" fill="currentColor"/></svg>
+          <span><b>Mac · Apple Silicon</b><small>DMG · M1–M5 · 199 MB</small></span><i class="arr" aria-hidden="true">↓</i>
+        </a>
+        <a class="dlbtn" id="dlMacI" href="https://github.com/gelounique/ubopen-web/releases/download/v1.0.0/UBOpen-1.0.0-mac-x64.dmg">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.4 12.6c0-2.4 2-3.5 2-3.6-1.1-1.6-2.8-1.8-3.4-1.8-1.4-.1-2.8.9-3.5.9s-1.9-.9-3.1-.8C6.8 7.3 5.3 8.2 4.5 9.6c-1.7 2.9-.4 7.3 1.2 9.7.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8s1.9.8 3.1.8c1.3 0 2.1-1.2 2.9-2.4.9-1.3 1.3-2.6 1.3-2.7-.1 0-2.7-1-2.7-4zM14.1 5.5c.6-.8 1.1-1.9 1-3-1 0-2.1.6-2.8 1.4-.6.7-1.2 1.8-1 2.9 1 .1 2.1-.6 2.8-1.3z" fill="currentColor"/></svg>
+          <span><b>Mac · Intel</b><small>DMG · x86-64 · 202 MB</small></span><i class="arr" aria-hidden="true">↓</i>
+        </a>
+      </div>
+      <div class="dl-foot">
+        <a class="tl" href="https://github.com/gelounique/ubopen-web/releases/download/v1.0.0/UBOpen-1.0.0.zip">Alles als ZIP</a><span>Windows + Mac (beide) + Uninstaller + LIES MICH · ~640 MB</span>
+      </div>
+      <p class="fine">Noch unsigniert: Windows zeigt evtl. „Der Computer wurde durch Windows geschützt“ → <b>Weitere Informationen › Trotzdem ausführen</b>. Auf dem Mac die App beim ersten Start per <b>Rechtsklick › Öffnen</b> starten. Welcher Mac? Apfel-Menü › <b>Über diesen Mac</b>: „Chip Apple M…“ = Apple Silicon, „Prozessor Intel“ = Intel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BUG -->
+<section class="sec" id="bug">
+  <div class="wrap narrow">
+    <div class="head reveal">
+      <div class="eyebrow">BUG MELDEN</div>
+      <h2>Eine Datei will nicht?</h2>
+      <p>Schreib uns, was passiert ist – die Meldung geht direkt an <b>support@uniquebaby.de</b>. Mit Dateiendung und Zielformat ist es am schnellsten gefixt.</p>
+    </div>
+    <form class="panel form reveal" id="bugForm" novalidate>
+      <div class="row2">
+        <label>Name<input name="name" autocomplete="name" placeholder="unique" required></label>
+        <label>E-Mail<input name="email" type="email" autocomplete="email" placeholder="du@mail.de" required></label>
+      </div>
+      <div class="row2">
+        <label>Wo ist es passiert?
+          <select name="bereich" required>
+            <option value="">Bitte wählen</option>
+            <option>Windows-App</option><option>Mac-App (Apple Silicon)</option><option>Mac-App (Intel)</option><option>Testversion im Browser</option><option>Setup / Uninstaller</option><option>Sonstiges</option>
+          </select>
+        </label>
+        <label>Datei &amp; Format<input name="system" placeholder="z. B. .heic → .jpg, Windows 11"></label>
+      </div>
+      <label>Was ist passiert?<textarea name="message" rows="6" required placeholder="Was hast du gemacht, was ist passiert, was hättest du erwartet?"></textarea></label>
+      <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="form-foot">
+        <button class="btn" type="submit" id="bugSend">Meldung senden</button>
+        <p class="fine">Deine Angaben werden nur zur Bearbeitung der Meldung genutzt und über den Formulardienst FormSubmit an support@uniquebaby.de geschickt. <a class="tl" href="https://uniquebaby.de/#datenschutz" target="_blank" rel="noopener">Datenschutz</a></p>
+      </div>
+      <div class="form-msg" id="bugMsg" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</section>
+
+<!-- NÄCHSTES KAPITEL -->
+<section class="sec next" id="weiter">
+  <div class="wrap">
+    <a class="panel glowbox chap reveal" href="https://uniquebaby.de" target="_blank" rel="noopener">
+      <img src="assets/chap-home.jpg" alt="UNIQUEBABY – NICHT WIE IHR." loading="lazy" width="1480" height="760">
+      <div class="chap-in">
+        <div class="eyebrow">NÄCHSTES KAPITEL</div>
+        <h2>Zurück zu<br>UNIQUEBABY.</h2>
+        <p>UBOpen ist ein Projekt von UNIQUEBABY – Musik, Visuals und Design von unique. Alles andere findest du auf uniquebaby.de.</p>
+        <span class="btn">uniquebaby.de öffnen <i aria-hidden="true">↗</i></span>
+      </div>
+    </a>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="f-l"><img src="assets/un-white.png" alt="UN" class="f-un"><div><b>UBOpen &amp; Convert by gelounique</b><span>Entwickelt von Gelo Santino Mares</span></div></div>
+    <nav class="f-r"><a href="app/">Testversion</a><a href="https://ubgrade.uniquebaby.de" target="_blank" rel="noopener">UBGrade</a><a href="https://uniquebaby.de" target="_blank" rel="noopener">uniquebaby.de</a><a href="https://instagram.com/gelounique" target="_blank" rel="noopener">@gelounique</a><a href="https://uniquebaby.de/#impressum" target="_blank" rel="noopener">Impressum</a><a href="https://uniquebaby.de/#datenschutz" target="_blank" rel="noopener">Datenschutz</a></nav>
+  </div>
+</footer>
+
+<script src="formats.js" defer></script>
+<script src="landing.js" defer></script>
+</body>
+</html>

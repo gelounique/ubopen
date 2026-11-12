@@ -21,6 +21,21 @@ cp(path.join(NM, '@imagemagick/magick-wasm/dist/x86/magick.wasm'), path.join(V, 
 fs.mkdirSync(path.join(V, 'libarchive'), { recursive: true }); for (const f of ['worker-bundle.js', 'libarchive.wasm']) cp(path.join(NM, 'libarchive.js/dist', f), path.join(V, 'libarchive', f));
 // Präsentationsseite
 if (fs.existsSync(path.join(R, 'web-landing'))) cp(path.join(R, 'web-landing'), OUT);
+// Format-Check-Daten für die Präsentationsseite
+{
+  const { createRequire } = await import('module'); const FMT = createRequire(import.meta.url)(path.join(R, 'app/shared/formats.js'));
+  const lists = [], li = new Map(), ext = {};
+  for (const [e, v] of Object.entries(FMT.F)) {
+    const t = [...new Set(FMT.targetsFor(e, v.cat).filter(x => !String(x.id || '').startsWith('u-') && x.t !== 'dir').map(x => x.l))].join('|');
+    if (!li.has(t)) { li.set(t, lists.length); lists.push(t); }
+    ext[e] = [v.cat, v.name, li.get(t)];
+  }
+  const cats = Object.fromEntries(Object.entries(FMT.CATS).map(([k, v]) => [k, v.l || v.label || v.name || k]));
+  const ic = await esbuild.build({ stdin: { contents: "import { icon, catIcon } from './icons.js'; export default k => icon(catIcon(k), 26);", resolveDir: path.join(UI, 'src') }, bundle: true, format: 'esm', write: false, nodePaths: [NM], platform: 'node', logLevel: 'warning' });
+  const tmp = path.join(R, 'build', '_icons.mjs'); fs.writeFileSync(tmp, ic.outputFiles[0].text); const mk = (await import(tmp + '?' + Date.now())).default; fs.rmSync(tmp);
+  const icons = Object.fromEntries(Object.keys(cats).map(k => [k, mk(k)]));
+  fs.writeFileSync(path.join(OUT, 'formats.js'), '/* UBOpen – Formatliste (generiert) */\nwindow.UBF=' + JSON.stringify({ n: Object.keys(ext).length, cats, icons, lists, ext }) + ';\n');
+}
 fs.writeFileSync(path.join(OUT, 'CNAME'), 'ubopen.uniquebaby.de\n');
 fs.writeFileSync(path.join(OUT, '.nojekyll'), '');
 let size = 0; const walk = d => { for (const f of fs.readdirSync(d, { withFileTypes: true })) { const p = path.join(d, f.name); if (f.isDirectory()) walk(p); else size += fs.statSync(p).size; } }; walk(OUT);

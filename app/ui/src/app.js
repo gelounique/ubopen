@@ -342,7 +342,7 @@ const keyOf = tg => tg.id || tg.t;
 function targetsFor(real, cat) {
   const l = FMT.targetsFor(real, cat);
   if (!S.web) return l;
-  return l.filter(t => !['pandoc', 'soffice', 'calibre'].includes(t.e) && !(t.e === 'print' && ['doc', 'ebook'].includes(cat)) && !(t.e === 'ui' && t.t === 'png' && ['code', 'web', 'subtitle'].includes(cat)));
+  return l.filter(t => !['pandoc', 'soffice', 'calibre'].includes(t.e) && !(t.e === 'print' && ['doc', 'ebook'].includes(cat)) && !(t.e === '7z' && ['7z', 'wim'].includes(t.t)) && !(t.e === 'ui' && t.t === 'png' && ['code', 'web', 'subtitle'].includes(cat)));
 }
 export function optionsUI(tg, file, init = {}) {
   const o = Object.assign({}, init); const el = h('div', { class: 'opts' });
