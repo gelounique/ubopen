@@ -1,5 +1,5 @@
 #!/bin/bash
-# UBOpen & Convert — macOS-Build (Apple Silicon + Intel) auf einem echten Mac (GitHub Actions, macos-14)
+# UBOpen & Convert — macOS-Build (Apple Silicon + Intel) auf einem echten Mac (GitHub Actions, macos-15)
 # Ergebnis: build-mac/out/UBOpen-<ver>-mac-arm64.dmg und -x64.dmg (+ .sha256, Smoke-Test-Ergebnisse)
 set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"; cd "$ROOT"
