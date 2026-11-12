@@ -27,7 +27,7 @@ Push auf `main` → `.github/workflows/mac.yml` baut `UBOpen-1.0.0-mac-arm64.dmg
 startet beide Apps echt (x64 über Rosetta), konvertiert 8 Testdateien und legt DMG-Teile, Logs und Screenshots in den Branch `mac-build`.
 
 ## Web (ubopen.uniquebaby.de)
-`node tools/build-web.mjs` → `build/web` (Seite `/`, Testversion `/app/`, CNAME). Inhalt ins öffentliche Repo `gelounique/ubopen-web` (GitHub Pages).
+`node tools/build-web.mjs` → `build/web` (Seite `/`, Testversion `/app/`, CNAME). Inhalt auf Branch `gh-pages` (GitHub Pages, Domain per CNAME).
 Release: ZIP in 45-MB-Teilen auf Branch `release-files` pushen → Workflow erstellt Release v1.0.0 mit Einzel-Downloads.
 
 Setup-Schalter: `/S` = still installieren/deinstallieren, `/uninstall`.
