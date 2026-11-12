@@ -17,6 +17,7 @@ async function boot() {
   const vb = $('.titlebar .brand'); if (vb) vb.title = 'UBOpen & Convert v' + S.boot.version;
   if (S.settings.reduceMotion) document.body.classList.add('rm');
   document.body.classList.add('os-' + S.boot.platform); S.mac = S.boot.platform === 'darwin'; S.web = S.boot.platform === 'web';
+  if (S.web) setupWeb();
   ub.on('menu', m => { if (m === 'open') openPicker(); if (m === 'save') { const t = S.tabs.find(x => x.id === S.active); if (t) t.inst.save ? doSave(t) : doSaveAs(t); } });
   buildChrome(); buildPages(); go('home');
   ub.on('open-files', r => r.convert ? addToQueue(r.files, true) : r.files.forEach(f => openFile(f)));
@@ -25,6 +26,14 @@ async function boot() {
   for (const r of S.boot.pending || []) r.convert ? addToQueue(r.files, true) : r.files.forEach(f => openFile(f));
   setTimeout(async () => { S.engines = await ub.engines(); renderHome(); }, 1200);
   setTimeout(() => { $('#splash').classList.add('out'); setTimeout(() => $('#splash').remove(), 600); }, 1500);
+}
+
+// ================================================================= Web-Testversion
+function setupWeb() {
+  const tb = $('.titlebar');
+  $('.titlebar .brand').append(h('span', { class: 'chip' }, 'Testversion'));
+  tb.append(h('a', { class: 'pill pinkbtn sm', href: '../#download', style: { margin: '0 10px 0 6px', textDecoration: 'none' } }, h('span', { html: icon('down', 15) }), 'Download Windows & Mac'));
+  if (matchMedia('(max-width: 820px)').matches) document.body.append(h('div', { class: 'webmobile' }, h('img', { src: 'assets/icon.png' }), h('b', {}, 'Am Computer öffnen'), h('span', {}, 'UBOpen & Convert ist für große Bildschirme gebaut. Öffne ubopen.uniquebaby.de am Rechner – oder lade die App.'), h('a', { class: 'pill pinkbtn', href: '../#download' }, 'Zum Download')));
 }
 
 // ================================================================= Chrome: Titelleiste, Rail, Status
@@ -323,12 +332,18 @@ async function doMultiCopy(t) { const n = await prompt('Mehrere Kopien', '3', 'W
 
 // ================================================================= Konvertieren: Optionen
 function targetOptions(file) {
-  const list = FMT.targetsFor(file.real, file.cat);
+  const list = targetsFor(file.real, file.cat);
   const groups = {}; const order = [];
   for (const tg of list) { const g = tg.e === '7z' && (tg.id || '').startsWith('u-') || ['b64', 'hex', 'sha256'].includes(tg.t) ? 'Universal' : (FMT.CATS[file.cat] || {}).label || 'Ziel'; if (!groups[g]) { groups[g] = []; order.push(g); } groups[g].push(tg); }
   return { list, groups, order };
 }
 const keyOf = tg => tg.id || tg.t;
+// Web-Testversion: nur Ziele anbieten, die im Browser wirklich laufen
+function targetsFor(real, cat) {
+  const l = FMT.targetsFor(real, cat);
+  if (!S.web) return l;
+  return l.filter(t => !['pandoc', 'soffice', 'calibre'].includes(t.e) && !(t.e === 'print' && ['doc', 'ebook'].includes(cat)) && !(t.e === 'ui' && t.t === 'png' && ['code', 'web', 'subtitle'].includes(cat)));
+}
 export function optionsUI(tg, file, init = {}) {
   const o = Object.assign({}, init); const el = h('div', { class: 'opts' });
   const cat = file ? file.cat : '';
@@ -405,7 +420,7 @@ function buildConvBox(t) {
     try {
       const out = await runItem(item, p => { prog.querySelector('i').style.width = Math.round(p * 100) + '%'; }, t);
       prog.querySelector('i').style.width = '100%';
-      res.append(resultRow(out));
+      if (out) res.append(resultRow(out)); else res.append(h('span', { class: 'chip ok' }, S.web ? 'Fertig – siehe Downloads / Druckdialog' : 'Fertig'));
     } catch (e) { if (e.message !== 'Abgebrochen') err(e); }
     go.disabled = false; setTimeout(() => prog.style.display = 'none', 600);
   };
@@ -457,7 +472,7 @@ function renderQueue() {
     const sample = S.queue.find(q => q.file.cat === c);
     const { groups, order } = targetOptions(sample.file);
     tbox.append(h('div', { class: 'row' }, h('span', { class: 'muted', style: { width: '96px', flex: 'none', fontSize: '12px' } }, (FMT.CATS[c] || {}).label || c),
-      select([{ v: '', l: '— beibehalten —' }].concat(order.map(g => ({ group: g, items: groups[g].map(x => ({ v: keyOf(x), l: x.l })) }))), '', v => { if (!v) return; for (const q of S.queue) if (q.file.cat === c && q.state !== 'run') { const tg = FMT.targetsFor(q.file.real, q.file.cat).find(x => keyOf(x) === v); if (tg) { q.target = tg; q.state = 'wait'; } } renderQueue(); }, 'grow')));
+      select([{ v: '', l: '— beibehalten —' }].concat(order.map(g => ({ group: g, items: groups[g].map(x => ({ v: keyOf(x), l: x.l })) }))), '', v => { if (!v) return; for (const q of S.queue) if (q.file.cat === c && q.state !== 'run') { const tg = targetsFor(q.file.real, q.file.cat).find(x => keyOf(x) === v); if (tg) { q.target = tg; q.state = 'wait'; } } renderQueue(); }, 'grow')));
   }
   side.append(tbox);
   const outBox = h('div', { class: 'sec' }, h('h4', {}, 'Ausgabe'),
@@ -466,7 +481,7 @@ function renderQueue() {
     h('div', { class: 'row' }, h('span', { class: 'muted', style: { fontSize: '12.5px', width: '86px' } }, 'Dateiname'), h('input', { class: 'field', value: S.settings.namePattern, title: '{name} = Originalname, {date} = Datum', onchange: async e => { S.settings = await ub.settings({ namePattern: e.target.value || '{name}' }); } })),
     toggle('Vorhandene überschreiben', S.settings.overwrite, async v => { S.settings = await ub.settings({ overwrite: v }); }, 'Sonst wird nummeriert'),
     h('div', { class: 'row' }, h('span', { class: 'muted', style: { fontSize: '12.5px', width: '86px' } }, 'Parallel'), seg([1, 2, 3, 4].map(n => ({ v: n, l: String(n) })), S.settings.concurrency || 2, async v => { S.settings = await ub.settings({ concurrency: v }); }, 'sm')));
-  side.append(outBox);
+  if (!S.web) side.append(outBox); else side.append(h('div', { class: 'sec' }, h('h4', {}, 'Ausgabe'), h('div', { class: 'muted', style: { fontSize: '12px' } }, 'Im Browser landen fertige Dateien direkt in deinen Downloads. Alles bleibt lokal auf deinem Gerät.')));
   const waiting = S.queue.filter(q => q.state === 'wait' || q.state === 'error').length;
   const running = S.queue.some(q => q.state === 'run');
   side.append(h('div', { class: 'sec' },
@@ -478,7 +493,7 @@ function renderQueue() {
 function qItemEl(q) {
   const ri = h('div', { class: 'qi', html: icon(catIcon(q.file.cat), 20) });
   ub.icon(q.path).then(u => { if (u) { ri.innerHTML = ''; ri.append(h('img', { src: u })); } });
-  const targets = FMT.targetsFor(q.file.real, q.file.cat);
+  const targets = targetsFor(q.file.real, q.file.cat);
   const sel = targets.length ? select(targets.map(x => ({ v: keyOf(x), l: '→ ' + x.l })), keyOf(q.target), v => { q.target = targets.find(x => keyOf(x) === v); q.state = 'wait'; q.out = null; updateQItem(q); }) : h('span', { class: 'muted' }, 'keine Ziele');
   const optBtn = h('button', { class: 'iconbtn', title: 'Optionen', html: icon('settings', 16), onclick: () => qOptions(q) });
   const el = h('div', { class: 'qitem ' + q.state },
@@ -495,7 +510,7 @@ function updateQItem(q) {
   s.className = 'qs' + (q.state === 'done' ? ' ok' : q.state === 'error' ? ' bad' : '');
   s.innerHTML = '';
   if (q.state === 'run') s.textContent = Math.round((q.p || 0) * 100) + ' %';
-  else if (q.state === 'done') s.append(h('span', { class: 'qout', title: q.out, onclick: () => ub.reveal(q.out) }, '✓ ' + base(q.out)));
+  else if (q.state === 'done') s.append(q.out ? h('span', { class: 'qout', title: q.out, onclick: () => ub.reveal(q.out) }, '✓ ' + base(q.out)) : h('span', { class: 'qout' }, '✓ fertig'));
   else if (q.state === 'error') { s.textContent = 'Fehler'; s.title = q.msg || ''; s.onclick = () => toast(q.msg, 'error'); s.style.cursor = 'pointer'; }
   else if (q.state === 'cancel') s.textContent = 'Abgebrochen';
   else s.textContent = 'Bereit';
@@ -508,7 +523,7 @@ async function qOptions(q) {
 export async function addToQueue(files, show, preset) {
   for (const p of files) {
     const file = await ub.sniffQuiet(p); if (file.error || file.dir) continue;
-    const targets = FMT.targetsFor(file.real, file.cat);
+    const targets = targetsFor(file.real, file.cat);
     let tg = targets[0];
     if (preset && preset.target) { const m = targets.find(x => keyOf(x) === preset.target || x.t === preset.target); if (m) tg = m; }
     if (!tg) tg = { t: 'zip', l: 'In ZIP packen', e: '7z', id: 'u-zip' };
@@ -534,7 +549,7 @@ async function runQueue() {
   await Promise.all(Array.from({ length: conc }, worker));
   qRunning = false; renderQueue();
   const done = S.queue.filter(q => q.state === 'done').length, bad = S.queue.filter(q => q.state === 'error').length;
-  toast(`Fertig: ${done} konvertiert${bad ? `, ${bad} mit Fehler` : ''}`, bad ? 'error' : 'ok', bad ? {} : { action: { label: 'Ordner', fn: () => { const d = S.queue.find(q => q.out); d && ub.reveal(d.out); } } });
+  toast(`Fertig: ${done} konvertiert${bad ? `, ${bad} mit Fehler` : ''}`, bad ? 'error' : 'ok', bad ? {} : { action: S.web ? null : { label: 'Ordner', fn: () => { const d = S.queue.find(q => q.out); d && ub.reveal(d.out); } } });
 }
 function cancelAll() { for (const q of S.queue) if (q.state === 'run') ub.cancel(q.id); for (const q of S.queue) if (q.state === 'wait') q.state = 'cancel'; renderQueue(); }
 
@@ -574,14 +589,14 @@ function renderSettings() {
       row('Grafikkarte nutzen', 'Hardware-Encoding für H.264/H.265 – viel schneller', select(S.mac ? [{ v: 'none', l: 'Aus' }, { v: 'videotoolbox', l: 'Apple VideoToolbox' }] : [{ v: 'none', l: 'Aus' }, { v: 'nvenc', l: 'NVIDIA' }, { v: 'qsv', l: 'Intel' }, { v: 'amf', l: 'AMD' }], S.settings.gpu, v2 => set({ gpu: v2 }))),
       row('Metadaten behalten', 'Titel, Interpret, Datum bei Audio', toggle('', S.settings.keepMeta, v2 => set({ keepMeta: v2 }))),
       row('Ergebnis automatisch öffnen', null, toggle('', S.settings.openAfter, v2 => set({ openAfter: v2 })))),
-    h('div', { class: 'card' }, h('h3', {}, S.mac ? 'Mac' : 'Windows'),
+    S.web ? null : h('div', { class: 'card' }, h('h3', {}, S.mac ? 'Mac' : 'Windows'),
       S.mac ? row('Im Finder', 'Rechtsklick auf eine Datei › Öffnen mit › UBOpen & Convert', h('span', { class: 'chip ok' }, 'aktiv')) : row('Explorer-Kontextmenü', '„Mit UBOpen öffnen“ und „Mit UBOpen konvertieren“ per Rechtsklick', toggle('', S.settings.contextMenu, v2 => set({ contextMenu: v2 }))),
       row('Animationen reduzieren', null, toggle('', S.settings.reduceMotion, v2 => { document.body.classList.toggle('rm', v2); set({ reduceMotion: v2 }); }))),
     h('div', { class: 'card' }, h('h3', {}, 'Engines'), h('div', { class: 'muted', style: { marginBottom: '10px' } }, S.mac ? 'Eingebaut: FFmpeg, ImageMagick (wasm), 7-Zip, Pandoc. Optional erkannt: LibreOffice, Calibre (in /Programme).' : 'Eingebaut: FFmpeg, ImageMagick, 7-Zip, Pandoc. Optional erkannt: LibreOffice (Office, Visio, Keynote, PDF→Word), Calibre (Kindle/MOBI), Ghostscript (EPS/PS).'),
       ...[['FFmpeg', 'ffmpeg', 'Video, Audio, Untertitel'], ['ImageMagick', 'magick', 'Über 200 Bildformate, RAW, PSD, HEIC'], ['7-Zip', 'sevenzip', 'Archive, ISO, Disk-Images'], ['Pandoc', 'pandoc', 'Dokumente, Markdown, E-Books'], ['LibreOffice', 'soffice', 'Word/Excel/PowerPoint-Originale, Visio, Keynote'], ['Calibre', 'calibre', 'Kindle, MOBI, AZW3'], ['Ghostscript', 'ghostscript', 'EPS, PostScript, AI']]
         .map(([n, k, d]) => row(n, d, h('span', { class: 'chip ' + (e[k] ? 'ok' : 'off') }, e[k] ? (v[k] && v[k] !== 'ok' ? v[k] : 'bereit') : 'nicht gefunden'))),
       h('div', { class: 'row', style: { marginTop: '12px' } }, pill('Neu suchen', async () => { S.engines = await ub.engines(); renderSettings(); toast('Engines neu erkannt'); }, 'ghost sm', 'refresh'), pill('LibreOffice holen', () => ub.openUrl('https://www.libreoffice.org/download/download/'), 'ghost sm', 'external'), pill('Calibre holen', () => ub.openUrl(S.mac ? 'https://calibre-ebook.com/download_osx' : 'https://calibre-ebook.com/download_windows'), 'ghost sm', 'external'))),
-    h('div', { class: 'card' }, h('h3', {}, 'Speicher'), row('Vorschau-Cache', 'Konvertierte Vorschauen für exotische Formate', pill('Ordner öffnen', async () => ub.reveal(await ub.join(S.boot.tmp, 'UBOpen', 'cache')), 'ghost sm', 'folder')))));
+    S.web ? null : h('div', { class: 'card' }, h('h3', {}, 'Speicher'), row('Vorschau-Cache', 'Konvertierte Vorschauen für exotische Formate', pill('Ordner öffnen', async () => ub.reveal(await ub.join(S.boot.tmp, 'UBOpen', 'cache')), 'ghost sm', 'folder')))));
 }
 
 // ================================================================= Über

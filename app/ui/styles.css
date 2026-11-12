@@ -389,3 +389,9 @@ body.rm *, body.rm *::before { animation-duration: 0s !important; transition-dur
 body.os-darwin .winctl { display: none; }
 body.os-darwin .titlebar .brand { padding-left: 84px; }
 body.os-darwin .titlebar { padding-right: 6px; }
+
+/* Web-Testversion */
+body.os-web .titlebar { -webkit-app-region: no-drag; }
+body.os-web .winctl { display: none; }
+.webmobile { position: fixed; inset: 0; z-index: 400; background: #050506; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 30px; text-align: center; }
+.webmobile img { width: 110px; } .webmobile b { font: 600 20px var(--sans); text-transform: uppercase; } .webmobile span { color: var(--fg2); max-width: 340px; }

@@ -24,7 +24,7 @@ export const sep = p => (String(p).includes('\\') ? '\\' : '/');
 export const join = (d, n) => d + sep(d) + n;
 export const debounce = (fn, ms = 200) => { let t; return (...a) => { clearTimeout(t); t = setTimeout(() => fn(...a), ms); }; };
 export const sleep = ms => new Promise(r => setTimeout(r, ms));
-export const fileUrl = p => 'ubfile://f/' + String(p).split(/[\\/]/).filter((x, i) => x || i === 0).map(encodeURIComponent).join('/').replace(/^\//, '');
+export const fileUrl = p => window.ub && window.ub.urlFor ? window.ub.urlFor(p) : 'ubfile://f/' + String(p).split(/[\\/]/).filter((x, i) => x || i === 0).map(encodeURIComponent).join('/').replace(/^\//, '');
 export const uid = () => Math.random().toString(36).slice(2, 10);
 
 // ---------------------------------------------------------------- Toasts

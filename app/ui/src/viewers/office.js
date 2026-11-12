@@ -16,6 +16,7 @@ export default {
     }
     // Ohne LibreOffice: PPTX/ODP/Keynote-ähnliche ZIPs auslesen
     if (['pptx', 'ppsx', 'pptm', 'potx', 'odp'].includes(file.real)) return slidesLite(ctx);
+    if (window.ub.web) { el.append(h('div', { class: 'empty', style: { margin: '40px' } }, file.typeName + ' kann die Web-Testversion nicht originalgetreu anzeigen. In der Desktop-App klappt das (mit LibreOffice).', h('div', { class: 'row', style: { marginTop: '14px' } }, pill('Als Hex ansehen', () => ctx.setMode('hex'), 'sm', 'hex')))); return {}; }
     el.append(h('div', { class: 'empty', style: { margin: '40px', textAlign: 'left', lineHeight: 1.7 } },
       h('div', { style: { fontSize: '20px', color: 'var(--fg)', fontWeight: 600, marginBottom: '8px' } }, file.typeName + ' braucht LibreOffice'),
       'Für eine originalgetreue Vorschau und Umwandlung (z. B. nach PDF oder DOCX) nutzt UBOpen das kostenlose LibreOffice. Einmal installieren – UBOpen erkennt es automatisch.',
