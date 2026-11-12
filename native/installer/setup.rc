@@ -1,0 +1,30 @@
+#include <windows.h>
+1 ICON "app.ico"
+101 RCDATA "logo.png"
+102 RCDATA "font-r.ttf"
+103 RCDATA "font-b.ttf"
+1 RT_MANIFEST "setup.manifest"
+1 VERSIONINFO
+FILEVERSION 1,0,0,0
+PRODUCTVERSION 1,0,0,0
+FILEOS 0x40004
+FILETYPE 0x1
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040704B0"
+    BEGIN
+      VALUE "CompanyName", "UNIQUEBABY - Gelo Santino Mares"
+      VALUE "FileDescription", "UBOpen & Convert Setup"
+      VALUE "FileVersion", "1.0.0"
+      VALUE "ProductName", "UBOpen & Convert"
+      VALUE "ProductVersion", "1.0.0"
+      VALUE "LegalCopyright", "(c) 2026 Gelo Santino Mares - uniquebaby.de"
+      VALUE "OriginalFilename", "UBOpen-Setup.exe"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x407, 1200
+  END
+END

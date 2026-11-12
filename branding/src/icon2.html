@@ -1,0 +1,26 @@
+<!doctype html><html><head><meta charset="utf-8"><style>
+html,body{margin:0;width:1024px;height:1024px;background:transparent;overflow:hidden}
+</style></head><body><svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <linearGradient id="tile" x1="0.25" y1="0" x2="0.75" y2="1"><stop offset="0" stop-color="#1c1c21"/><stop offset="1" stop-color="#0b0b0d"/></linearGradient>
+ <linearGradient id="rg" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#FF8FC0"/><stop offset=".55" stop-color="#FFB6D5"/><stop offset="1" stop-color="#FFFFFF"/></linearGradient>
+ <filter id="gl" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="22"/></filter>
+</defs>
+<rect x="40" y="40" width="944" height="944" rx="226" fill="url(#tile)"/>
+<rect x="41.5" y="41.5" width="941" height="941" rx="224.5" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="3"/>
+<circle cx="512" cy="512" r="302" fill="none" stroke="#fff" stroke-opacity=".05" stroke-width="44"/>
+<g id="ring"></g>
+<image href="un.png" x="267" y="410" width="490" height="206" preserveAspectRatio="xMidYMid meet" style="filter:drop-shadow(0 8px 20px rgba(0,0,0,.6))"/>
+</svg>
+<script>
+const c=512,R=302,W=44,a0=-50,a1=255; // Bogen im Uhrzeigersinn, Lücke oben rechts
+const pt=a=>[c+R*Math.cos(a*Math.PI/180),c+R*Math.sin(a*Math.PI/180)];
+const [x0,y0]=pt(a0),[x1,y1]=pt(a1);
+const arc=`M ${x0} ${y0} A ${R} ${R} 0 1 1 ${x1} ${y1}`;
+// Spitze im Uhrzeigersinn hinter dem Bogenende
+const th=a1*Math.PI/180,t=[-Math.sin(th),Math.cos(th)],n=[Math.cos(th),Math.sin(th)];
+const f=(p)=>p.map(v=>v.toFixed(1)).join(',');
+const tip=f([x1+t[0]*78,y1+t[1]*78]),b1=f([x1-t[0]*4+n[0]*62,y1-t[1]*4+n[1]*62]),b2=f([x1-t[0]*4-n[0]*62,y1-t[1]*4-n[1]*62]);
+const g=`<path d="${arc}" fill="none" stroke="#FFB6D5" stroke-width="${W}" stroke-linecap="round"/><polygon points="${tip} ${b1} ${b2}" fill="#FFB6D5" stroke="#FFB6D5" stroke-width="12" stroke-linejoin="round"/>`;
+document.getElementById('ring').innerHTML=`<g filter="url(#gl)" opacity=".85">${g}</g>${g}`;
+</script></body></html>

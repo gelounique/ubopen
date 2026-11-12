@@ -1,0 +1,23 @@
+UBOpen & Convert by gelounique — macOS
+======================================
+
+INSTALLIEREN
+  „UBOpen & Convert“ auf „Programme“ ziehen. Fertig.
+
+ERSTER START (App ist noch nicht von Apple notarisiert)
+  Programme › UBOpen & Convert › Rechtsklick › Öffnen › Öffnen.
+  Falls macOS meldet, die App sei „beschädigt“: Terminal öffnen und eingeben
+    xattr -cr "/Applications/UBOpen & Convert.app"
+  Danach normal starten.
+
+DATEIEN ÖFFNEN
+  Datei aufs App-Fenster oder Dock-Icon ziehen – oder im Finder:
+  Rechtsklick › Öffnen mit › UBOpen & Convert.
+
+DEINSTALLIEREN
+  „UBOpen deinstallieren“ aus diesem Fenster starten – entfernt App, Einstellungen und Cache.
+
+Eingebaut: FFmpeg, ImageMagick (WebAssembly), 7-Zip, Pandoc.
+Optional erkannt: LibreOffice und Calibre (im Ordner Programme).
+
+Entwickelt von Gelo Santino Mares · uniquebaby.de · Instagram @gelounique · support@uniquebaby.de

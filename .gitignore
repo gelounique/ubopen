@@ -1,0 +1,13 @@
+node_modules/
+app/node_modules/
+app/ui/dist/
+build-mac/
+build/
+*.log
+branding/kit-html/
+branding/out-html/
+branding/out/
+branding/src/shots/
+branding/kit/
+branding/src/shots2/
+branding/jobs-*.json

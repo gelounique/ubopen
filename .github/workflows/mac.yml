@@ -1,0 +1,30 @@
+# UBOpen & Convert — baut die macOS-DMGs (Apple Silicon + Intel) auf einem echten Mac und testet die App
+name: macOS
+on:
+  push: { branches: [main] }
+  workflow_dispatch: {}
+permissions: { contents: write }
+jobs:
+  mac:
+    runs-on: macos-14
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: Rosetta (für den Intel-Test)
+        run: softwareupdate --install-rosetta --agree-to-license || true
+      - name: Build
+        run: |
+          set -o pipefail
+          bash mac/build-mac.sh 2>&1 | tee build-mac.log
+      - name: Publish to branch mac-build (DMGs in 45-MB-Teilen, Logs, Smoke-Test)
+        if: always()
+        run: |
+          mkdir -p /tmp/pub && cp build-mac.log /tmp/pub/ 2>/dev/null || true
+          cp build-mac/out/*.sha256 build-mac/out/smoke-* /tmp/pub/ 2>/dev/null || true
+          for f in build-mac/out/*.dmg; do [ -f "$f" ] && split -b 45m "$f" "/tmp/pub/$(basename "$f").part-"; done
+          echo "${GITHUB_SHA}" > /tmp/pub/commit.txt
+          cd /tmp/pub && git init -q -b mac-build && git add -A
+          git -c user.name="UBOpen CI" -c user.email="ci@uniquebaby.de" commit -qm "mac build ${GITHUB_SHA}"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git" mac-build
