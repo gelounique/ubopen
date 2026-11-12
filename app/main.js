@@ -214,7 +214,8 @@ H('file:reveal', p => { shell.showItemInFolder(p); return true; });
 H('file:openDefault', async p => { const r = await shell.openPath(p); if (r) throw new Error(r); return true; });
 H('file:openWith', p => { if (isWin) spawn('rundll32.exe', ['shell32.dll,OpenAs_RunDLL', p], { detached: true, windowsHide: true }); else shell.showItemInFolder(p); return true; });
 H('file:props', p => { if (isMac) { spawn('osascript', ['-e', `tell application "Finder" to open information window of (POSIX file "${p.replace(/"/g, '\\"')}" as alias)`, '-e', 'tell application "Finder" to activate']); return true; } if (isWin) spawn('powershell.exe', ['-NoProfile', '-Command', `$o=New-Object -ComObject Shell.Application;$f=$o.Namespace((Split-Path '${p.replace(/'/g, "''")}'));$f.ParseName((Split-Path '${p.replace(/'/g, "''")}' -Leaf)).InvokeVerb('properties');Start-Sleep 30`], { windowsHide: true, detached: true }); return true; });
-H('file:icon', async p => { try { const i = await app.getFileIcon(p, { size: 'large' }); return i.toDataURL(); } catch { return null; } });
+// macOS: app.getFileIcon() bricht unter macOS 15 mit FATAL ab → dort eigene Kategorie-Icons der UI
+H('file:icon', async p => { if (isMac) return null; try { const i = await app.getFileIcon(p, { size: 'large' }); return i.toDataURL(); } catch { return null; } });
 H('file:mkdir', async p => { await fsp.mkdir(p, { recursive: true }); return p; });
 H('clipboard:path', p => { clipboard.writeText(p); return true; });
 H('clipboard:text', t => { clipboard.writeText(t); return true; });
