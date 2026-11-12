@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>UBOpen & Convert – Testversion im Browser</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/icon.png">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="dist/app.css">
+</head>
+<body>
+<div id="splash"><div class="w">
+  <div class="ico"><div class="tile"></div><div class="track"></div><div class="ring glow"></div><div class="ring"></div><img class="un" src="assets/un-white.png" alt=""></div>
+  <div class="nm"><b>UBOpen &amp; Convert</b><span>BY GELOUNIQUE</span></div>
+</div></div>
+<div id="app">
+  <header class="titlebar">
+    <div class="brand"><img src="assets/ub-white.png" alt="UB"><b>UBOpen</b><span class="chip pk" id="modechip">START</span></div>
+    <div class="tabs" id="tabs"></div>
+    <nav class="rail" id="rail"></nav>
+    <div class="winctl">
+      <button id="wmin" title="Minimieren"></button><button id="wmax" title="Maximieren"></button><button id="wclose" class="x" title="Schließen"></button>
+    </div>
+  </header>
+  <main id="view"></main>
+  <footer class="status" id="status"></footer>
+</div>
+<div id="dropov"><div class="dz"><b>Loslassen</b><div class="zones"><div class="zone" data-z="open"><span id="zi1"></span>Öffnen</div><div class="zone" data-z="convert"><span id="zi2"></span>Konvertieren</div></div></div></div>
+<div id="toasts"></div>
+<div id="modal"></div>
+<script type="module" src="dist/app.js"></script>
+</body>
+</html>
