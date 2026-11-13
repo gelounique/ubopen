@@ -1,0 +1,11 @@
+11:07:26.095 start
+11:07:29.314 shot start ok
+11:07:29.320 engines ok
+11:07:29.320 open bild.png
+11:07:33.145 shot bild.png
+11:07:33.146 open clip.mp4
+11:07:38.726 shot clip.mp4
+11:07:38.728 open text.md
+11:07:42.411 shot text.md
+11:07:42.412 queue
+11:07:45.787 conv done

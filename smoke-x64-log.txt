@@ -1,0 +1,4 @@
+[7420:1113/110936.316419:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+2026-11-13 11:09:41.033 UBOpen & Convert Helper[7471:25646] XPC error for connection com.apple.backupd.sandbox.xpc: Connection invalid
+[7497:1113/111033.636611:ERROR:ffmpeg_common.cc(970)] Unsupported pixel format: -1
+[7420:1113/111034.266897:ERROR:vt_video_encode_accelerator_mac.mm(970)] Call NotifyErrorStatus(): code=7, message=VTCompressionSessionCreate failed: Error Domain=NSOSStatusErrorDomain Code=-12908 "(null)"

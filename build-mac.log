@@ -1,0 +1,221 @@
+== UI bauen
+
+added 117 packages in 10s
+UI gebaut 5.40 MB
+== App-Abhängigkeiten
+
+added 3 packages in 950ms
+== Engines laden
+== arm64
+npm warn deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+npm warn deprecated glob@7.2.3: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
+npm warn deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
+npm warn deprecated boolean@3.2.0: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+WARNING: asar parameter set to an invalid value (false), ignoring and disabling asar
+/Users/runner/work/ubopen/ubopen/build-mac/pkg/UBOpen & Convert-darwin-arm64/UBOpen & Convert.app/Contents/Resources/engines/7zip/7zz: replacing existing signature
+/Users/runner/work/ubopen/ubopen/build-mac/pkg/UBOpen & Convert-darwin-arm64/UBOpen & Convert.app/Contents/Resources/engines/ffmpeg/ffmpeg: replacing existing signature
+/Users/runner/work/ubopen/ubopen/build-mac/pkg/UBOpen & Convert-darwin-arm64/UBOpen & Convert.app/Contents/Resources/engines/ffmpeg/ffprobe: replacing existing signature
+/Users/runner/work/ubopen/ubopen/build-mac/pkg/UBOpen & Convert-darwin-arm64/UBOpen & Convert.app/Contents/Resources/engines/pandoc/pandoc: replacing existing signature
+/Users/runner/work/ubopen/ubopen/build-mac/pkg/UBOpen & Convert-darwin-arm64/UBOpen & Convert.app: replacing existing signature
+Signatur ok (arm64)
+arm64
+arm64
+arm64
+.: replacing existing signature
+/Users/runner/work/ubopen/ubopen/build-mac/stage-arm64/UBOpen deinstallieren.app: replacing existing signature
+-rw-r--r--@ 1 runner  staff  200151344 Nov 13 11:05 /Users/runner/work/ubopen/ubopen/build-mac/out/UBOpen-1.0.0-mac-arm64.dmg
+== x64
+WARNING: asar parameter set to an invalid value (false), ignoring and disabling asar
+/Users/runner/work/ubopen/ubopen/build-mac/pkg/UBOpen & Convert-darwin-x64/UBOpen & Convert.app/Contents/Resources/engines/7zip/7zz: replacing existing signature
+/Users/runner/work/ubopen/ubopen/build-mac/pkg/UBOpen & Convert-darwin-x64/UBOpen & Convert.app/Contents/Resources/engines/pandoc/pandoc: replacing existing signature
+Signatur ok (x64)
+x86_64
+x86_64
+x86_64
+.: replacing existing signature
+/Users/runner/work/ubopen/ubopen/build-mac/stage-x64/UBOpen deinstallieren.app: replacing existing signature
+-rw-r--r--@ 1 runner  staff  201793779 Nov 13 11:07 /Users/runner/work/ubopen/ubopen/build-mac/out/UBOpen-1.0.0-mac-x64.dmg
+== Smoke-Test
+/Users/runner/work/ubopen/ubopen/mac/smoke.sh: line 15:  4608 Terminated: 15          ( sleep 300; kill $PID 2> /dev/null )
+{
+ "arch": "arm64",
+ "platform": "darwin",
+ "versions": "33.2.1",
+ "engines": {
+  "ffmpeg": true,
+  "magick": true,
+  "sevenzip": true,
+  "pandoc": true,
+  "soffice": false,
+  "calibre": false,
+  "ghostscript": false,
+  "versions": {
+   "ffmpeg": "6.0",
+   "magick": "wasm",
+   "sevenzip": "24.08",
+   "pandoc": "3.8.3"
+  }
+ },
+ "conv": [
+  [
+   "clip.mp4",
+   "gif",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/clip.gif"
+  ],
+  [
+   "ton.wav",
+   "mp3",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/ton.mp3"
+  ],
+  [
+   "bild.png",
+   "webp",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/bild.webp"
+  ],
+  [
+   "bild.png",
+   "jpg",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/bild.jpg"
+  ],
+  [
+   "bild.png",
+   "ico",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/bild.ico"
+  ],
+  [
+   "text.md",
+   "docx",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/text.docx"
+  ],
+  [
+   "arc.zip",
+   "7z",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/arc.7z"
+  ],
+  [
+   "clip.mp4",
+   "mp4-h265",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/clip (UB).mp4"
+  ]
+ ],
+ "consoleErrors": []
+}{
+ "arch": "x64",
+ "platform": "darwin",
+ "versions": "33.2.1",
+ "engines": {
+  "ffmpeg": true,
+  "magick": true,
+  "sevenzip": true,
+  "pandoc": true,
+  "soffice": false,
+  "calibre": false,
+  "ghostscript": false,
+  "versions": {
+   "ffmpeg": "6.0-tessus",
+   "magick": "wasm",
+   "sevenzip": "24.08",
+   "pandoc": "3.8.3"
+  }
+ },
+ "conv": [
+  [
+   "clip.mp4",
+   "gif",
+   "done",
+   "",
+   "/tmp/ubsmoke-x64/clip.gif"
+  ],
+  [
+   "ton.wav",
+   "mp3",
+   "done",
+   "",
+   "/tmp/ubsmoke-x64/ton.mp3"
+  ],
+  [
+   "bild.png",
+   "webp",
+   "done",
+   "",
+   "/tmp/ubsmoke-x64/bild.webp"
+  ],
+  [
+   "bild.png",
+   "jpg",
+   "done",
+   "",
+   "/tmp/ubsmoke-x64/bild.jpg"
+  ],
+  [
+   "bild.png",
+   "ico",
+   "done",
+   "",
+   "/tmp/ubsmoke-x64/bild.ico"
+  ],
+  [
+   "text.md",
+   "docx",
+   "done",
+   "",
+   "/tmp/ubsmoke-x64/text.docx"
+  ],
+  [
+   "arc.zip",
+   "7z",
+   "done",
+   "",
+   "/tmp/ubsmoke-x64/arc.7z"
+  ],
+  [
+   "clip.mp4",
+   "mp4-h265",
+   "done",
+   "",
+   "/tmp/ubsmoke-x64/clip (UB).mp4"
+  ]
+ ],
+ "consoleErrors": []
+}/Users/runner/work/ubopen/ubopen/mac/smoke.sh: line 15:  5737 Terminated: 15          ( sleep 300; kill $PID 2> /dev/null )
+total 787136
+drwxr-xr-x  24 runner  staff        768 Nov 13 11:11 .
+drwxr-xr-x   7 runner  staff        224 Nov 13 11:06 ..
+-rw-r--r--   1 runner  staff        174 Nov 13 11:07 smoke-arm64-engines.txt
+-rw-r--r--   1 runner  staff        589 Nov 13 11:07 smoke-arm64-log.txt
+-rw-r--r--   1 runner  staff     104267 Nov 13 11:07 smoke-arm64-queue.png
+-rw-r--r--   1 runner  staff      85268 Nov 13 11:07 smoke-arm64-start.png
+-rw-r--r--   1 runner  staff        272 Nov 13 11:07 smoke-arm64-steps.txt
+-rw-r--r--   1 runner  staff      94433 Nov 13 11:07 smoke-arm64-view-bild.png
+-rw-r--r--   1 runner  staff     154408 Nov 13 11:07 smoke-arm64-view-clip.png
+-rw-r--r--   1 runner  staff      70241 Nov 13 11:07 smoke-arm64-view-text.png
+-rw-r--r--   1 runner  staff       1051 Nov 13 11:07 smoke-arm64.json
+-rw-r--r--   1 runner  staff        209 Nov 13 11:08 smoke-x64-engines.txt
+-rw-r--r--   1 runner  staff        524 Nov 13 11:10 smoke-x64-log.txt
+-rw-r--r--   1 runner  staff     110661 Nov 13 11:11 smoke-x64-queue.png
+-rw-r--r--   1 runner  staff      81921 Nov 13 11:10 smoke-x64-start.png
+-rw-r--r--   1 runner  staff        272 Nov 13 11:11 smoke-x64-steps.txt
+-rw-r--r--   1 runner  staff      68849 Nov 13 11:10 smoke-x64-view-bild.png
+-rw-r--r--   1 runner  staff     153756 Nov 13 11:10 smoke-x64-view-clip.png
+-rw-r--r--   1 runner  staff      69731 Nov 13 11:10 smoke-x64-view-text.png
+-rw-r--r--   1 runner  staff       1040 Nov 13 11:11 smoke-x64.json
+-rw-r--r--@  1 runner  staff  200151344 Nov 13 11:05 UBOpen-1.0.0-mac-arm64.dmg
+-rw-r--r--   1 runner  staff         65 Nov 13 11:05 UBOpen-1.0.0-mac-arm64.dmg.sha256
+-rw-r--r--@  1 runner  staff  201793779 Nov 13 11:07 UBOpen-1.0.0-mac-x64.dmg
+-rw-r--r--   1 runner  staff         65 Nov 13 11:07 UBOpen-1.0.0-mac-x64.dmg.sha256
