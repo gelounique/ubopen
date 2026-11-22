@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ubopen.uniquebaby.de/sitemap.xml
