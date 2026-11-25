@@ -1,0 +1,79 @@
+{
+ "arch": "arm64",
+ "platform": "darwin",
+ "versions": "33.2.1",
+ "engines": {
+  "ffmpeg": true,
+  "magick": true,
+  "sevenzip": true,
+  "pandoc": true,
+  "soffice": false,
+  "calibre": false,
+  "ghostscript": false,
+  "versions": {
+   "ffmpeg": "6.0",
+   "magick": "wasm",
+   "sevenzip": "24.08",
+   "pandoc": "3.8.3"
+  }
+ },
+ "conv": [
+  [
+   "clip.mp4",
+   "gif",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/clip.gif"
+  ],
+  [
+   "ton.wav",
+   "mp3",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/ton.mp3"
+  ],
+  [
+   "bild.png",
+   "webp",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/bild.webp"
+  ],
+  [
+   "bild.png",
+   "jpg",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/bild.jpg"
+  ],
+  [
+   "bild.png",
+   "ico",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/bild.ico"
+  ],
+  [
+   "text.md",
+   "docx",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/text.docx"
+  ],
+  [
+   "arc.zip",
+   "7z",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/arc.7z"
+  ],
+  [
+   "clip.mp4",
+   "mp4-h265",
+   "done",
+   "",
+   "/tmp/ubsmoke-arm64/clip (UB).mp4"
+  ]
+ ],
+ "consoleErrors": []
+}

@@ -1,0 +1,5 @@
+[3807:1125/030334.692763:WARNING:viz_main_impl.cc(85)] VizNullHypothesis is disabled (not a warning)
+2026-11-25 03:03:35.236 UBOpen & Convert Helper[3808:14403] XPC error for connection com.apple.backupd.sandbox.xpc: Connection invalid
+2026-11-25 03:03:35.236 UBOpen & Convert Helper[3808:14397] XPC error for connection com.apple.backupd.sandbox.xpc: Connection invalid
+2026-11-25 03:03:35.243 UBOpen & Convert Helper[3808:14397] XPC error for connection com.apple.backupd.sandbox.xpc: Connection invalid
+[3810:1125/030344.058819:ERROR:ffmpeg_common.cc(970)] Unsupported pixel format: -1
